@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Welcome, {{ user.get_full_name }} {{ user.username }}!</h2>
+  <p>Your birth date: {{ user.profile.birth_date }}</p>
+
+ <!-- <div class="container-fluid">
+  <p>Select from this wide range of books </p>
+  <p>Section yet to be updated. <p>
+    </div>
+-->
+  <!--  <p><a href="{% url 'home' %}"></a></p>  -->
+    <ul>
+  </ul>
+<div class="container-fluid">
+  <h3>Click on the link if you want to upload a file:</h3>
+    <p><a href="{% url 'model_form_upload' %}">Upload some file. It can be a pdf, ebook, picture or a video.</a></p>
+</div>
+
+
+<div class="container-fluid">
+  <h3>Click on the link if you want to see uploaded files:</h3>
+    <p><a href="{% url 'uploaded_files'%}" >View uploaded files.</a></p>
+</div>
+
+{% endblock %}
+
+
+
+
+<!--
+
+
+-->
