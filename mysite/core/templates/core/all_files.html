@@ -1,0 +1,45 @@
+{% extends  'base.html'%}
+{%block content%}
+
+<p>Uploaded files list:</p>
+{% if documents %}
+<ul>
+    {% for obj in documents %}
+    <li><a href="{{ obj.document.url }}">{{ obj.document.name }}</a>
+      <p> {{obj.document.primary_key}} </p>
+    </li>
+    {% endfor %}
+    {% if user.is_staff %}
+        <form action="{% url 'delete_all_files' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" id="{{obj.document.name}}" />
+        <input type="submit" value="Delete All Files" />
+        </form>
+    {% endif %}
+    {% if user.is_staff %}
+        <form action="{% url 'delete_first_file' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="hidden" id="{{obj.document.name}}" />
+        <input type="submit" value="Delete File From Top" />
+        </form>
+    {% endif %}
+</ul>
+{% else %}
+<p>No documents.</p>
+{% endif %}
+  <p><a href="{% url 'home' %}">Return to home</a></p>
+
+{% endblock %}
+
+
+<!--
+<ul>
+  {% for obj in documents %}
+    <li>
+      <a href="{{obj.document.url}}">{{ obj.document.name }}</a>
+      <small>(Uploaded at: {{ obj.uploaded_at }})</small>
+    </li>
+  {% endfor %}
+</ul>
+
+-->
